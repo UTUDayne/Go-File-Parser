@@ -4,11 +4,16 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strconv"
 )
 
 var i int = 5
 
 var words = " words words words"
+
+// First comment.
+
+var slicing = []string{" Words ", "words"}
 
 func main() {
 	byteString := []byte(fmt.Sprintf("%d", i) + words + "\n")
@@ -17,6 +22,15 @@ func main() {
 	defer file.Close()
 	i = i + rand.Intn(10)
 	os.WriteFile("test.txt", []byte(""), 0644)
+	var word_string = string("")
+	for _, value := range slicing {
+		word_string += value
+	}
+	number := 0
+	for e := 0; e < 10; e++ {
+		number += e
+	}
+	byteString = append(byteString, append([]byte(strconv.Itoa(number)), []byte(word_string)...)...)
 	_, err = file.Write(byteString)
 	panic_func(err)
 	content, err := os.ReadFile("test.txt")
