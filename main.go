@@ -8,12 +8,15 @@ import (
 
 var i int = 5
 
+var words = " words words words"
+
 func main() {
-	b := []byte(fmt.Sprintf("%d", i))
+	b := []byte(fmt.Sprintf("%d", i) + words)
 	err := os.WriteFile("test.txt", b, 0644)
 	panic_func(err)
 	i = i + rand.Intn(10)
 	file, err := os.ReadFile("test.txt")
+	panic_func(err)
 	fmt.Println(string(file))
 }
 
