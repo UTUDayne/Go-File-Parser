@@ -23,15 +23,15 @@ func main() {
 	defer file.Close()
 	i = i + rand.Intn(10)
 	os.WriteFile("test.txt", []byte(""), 0644)
-	var word_string = string("")
+	var word_string strings.Builder
 	for _, value := range slicing {
-		word_string += value
+		word_string.Write([]byte(value))
 	}
 	number := 0
-	for e := 0; e < 10; e++ {
+	for e := range 10 {
 		number += e
 	}
-	byteString = append(byteString, append([]byte(strconv.Itoa(number)), []byte(word_string)...)...)
+	byteString = append(byteString, append([]byte(strconv.Itoa(number)), []byte(word_string.String())...)...)
 	_, err = file.Write(byteString)
 	panic_func(err)
 	content, err := os.ReadFile("test.txt")
