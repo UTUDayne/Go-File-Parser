@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
+	"strings"
 )
 
 var i int = 5
@@ -34,8 +35,11 @@ func main() {
 	_, err = file.Write(byteString)
 	panic_func(err)
 	content, err := os.ReadFile("test.txt")
+	string_content := string(content)
+	if strings.Contains(string_content, "words") {
+		fmt.Println(string_content)
+	}
 	panic_func(err)
-	fmt.Println(string(content))
 }
 
 func panic_func(err error) {
